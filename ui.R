@@ -44,7 +44,8 @@ shinyUI(fluidPage(
     
     # Show a table summarizing the values entered
     mainPanel(
-      tableOutput("values")
-    )
+      tableOutput("value")
+      
+    ) 
   )
 ))

@@ -12,7 +12,7 @@ shinyServer(function(input, output) {
       Name = c("V1", 
                "V2",
                "V3"),
-      Value = as.character(c(input$integer,
+      Values = as.character(c(input$integer,
                              input$integer1,
                              input$integer2
                              #paste(input$range, collapse=' '),
@@ -23,7 +23,13 @@ shinyServer(function(input, output) {
   }) 
   
   # Show the values using an HTML table
-  output$values <- renderTable({
-    sliderValues()
-  })
+  output$value <- renderPrint({
+   data <- as.numeric(c(input$integer,input$integer1,input$integer2))
+   mean(data)
+      })
+ 
+  
 })
+change
+
+
