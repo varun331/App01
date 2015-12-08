@@ -1,11 +1,10 @@
 library(shiny)
-
-
 # Define server logic for slider examples
 shinyServer(function(input, output) {
   rw <- read.csv("~/Documents/R Projects/McCormick.csv",header=T)
-  rw1 <- rw[,c(8,10,12,14,16,18,21,23,27,29,34,36,38,40,42,44,46,48)]
-  dat <- rw1[,c(1:18)]
+  rw2 <- subset(rw,rw$ER<5)
+  rw4 <- rw2[,c(8,10,12,14,16,18,21,23,27,29,34,36,38,40,42,44,46,48)]
+  dat <- rw4[,c(1:18)]
   dat <- na.omit(dat)
   for (i in 1:18){dat[,c(i)] <- as.numeric(dat[,c(i)])}
   set.seed(2)
@@ -14,6 +13,7 @@ shinyServer(function(input, output) {
   library(survival)
   library(lattice)
   library(parallel)
+  library(splines)
   library(gbm)
   set.seed(1)
   boost.train=gbm(ER~.,data=train,distribution = "gaussian",
